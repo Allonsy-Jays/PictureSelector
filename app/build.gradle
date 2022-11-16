@@ -1,10 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'maven-publish'
 
 static def releaseTime() {
     def date = new Date()
     return date.format("yyyy-MM-dd") + "_" + date.format("hhmmss")
 }
+
+group = "com.github.Allonsy-Jays"
 
 android {
     compileSdkVersion 31
