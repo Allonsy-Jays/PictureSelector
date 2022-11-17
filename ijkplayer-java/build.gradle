@@ -1,5 +1,26 @@
 apply plugin: 'com.android.library'
 
+afterEvaluate {
+    publishing{
+        publications{
+            release(MavenPublication){
+                from components.release
+                groupId = 'com.github.Allonsy-Jays'
+                artifactId = 'ijkplayer-java'
+                version = '1.0'
+            }
+
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+                from components.debug
+                groupId = 'com.github.Allonsy-Jays'
+                artifactId = 'ijkplayer-java'
+                version = '1.0'
+            }
+        }
+    }
+}
+
 android {
     // http://tools.android.com/tech-docs/new-build-system/tips
     //noinspection GroovyAssignabilityCheck
@@ -21,6 +42,12 @@ android {
         }
     }
 }
+
+ext {
+    PUBLISH_ARTIFACT_ID = "ijkplayer-java"
+}
+
+apply from: '../publish.gradle'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

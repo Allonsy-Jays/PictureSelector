@@ -2,6 +2,27 @@ plugins {
     id 'com.android.library'
 }
 
+afterEvaluate {
+    publishing{
+        publications{
+            release(MavenPublication){
+                from components.release
+                groupId = 'com.github.Allonsy-Jays'
+                artifactId = 'camerax'
+                version = '1.0'
+            }
+
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+                from components.debug
+                groupId = 'com.github.Allonsy-Jays'
+                artifactId = 'camerax'
+                version = '1.0'
+            }
+        }
+    }
+}
+
 android {
     compileSdkVersion 31
 
